@@ -1,6 +1,6 @@
 <Solution>
   <Project Path="Catalogo.Application/Catalogo.Application.csproj" />
   <Project Path="Catalogo.Domain/Catalogo.Domain.csproj" />
-  <Project Path="Catalogo.Infrastrure/Catalogo.Infrastrure.csproj" />
+  <Project Path="Catalogo.Infrastrure/Catalogo.Infrastructure.csproj" />
   <Project Path="Catalogo.Presentation/Catalogo.Presentation.csproj" />
 </Solution>
