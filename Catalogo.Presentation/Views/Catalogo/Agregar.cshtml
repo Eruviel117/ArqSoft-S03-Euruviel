@@ -1,0 +1,43 @@
+﻿@model CatalogoApp.Domain.Models.Item
+
+<div class="form-card">
+
+    <h1>➕ Agregar Anime</h1>
+    <div class="form-linea"></div>
+
+    <form asp-action="Agregar" method="post">
+
+        <label class="form-label-anime">Título</label>
+        <input class="form-input-anime" asp-for="Titulo" placeholder="Ej: Attack on Titan" />
+
+        <label class="form-label-anime">Género</label>
+        <input class="form-input-anime" asp-for="Genero" placeholder="Ej: Acción, Romance, Terror..." />
+
+        <label class="form-label-anime">Estudio</label>
+        <input class="form-input-anime" asp-for="Estudio" placeholder="Ej: Mappa, Ufotable..." />
+
+        <label class="form-label-anime">Año</label>
+        <input class="form-input-anime" asp-for="Ano" type="number" placeholder="Ej: 2023" />
+
+        <label class="form-label-anime">Estado</label>
+        <select class="form-input-anime" asp-for="Estado">
+            <option value="">-- Selecciona un estado --</option>
+            <option value="Viendo">▶ Viendo</option>
+            <option value="Terminado">✔ Terminado</option>
+            <option value="Pausado">⏸ Pausado</option>
+        </select>
+
+        <label class="form-label-anime">Calificación (1-10)</label>
+        <input class="form-input-anime" asp-for="Calificacion" type="number" min="1" max="10" placeholder="Ej: 9" />
+
+        <label class="form-label-anime">Descripción</label>
+        <textarea class="form-input-anime" asp-for="Descripcion" rows="3"
+                  placeholder="Breve descripción del anime..."></textarea>
+
+        <button type="submit" class="btn-guardar">💾 Guardar Anime</button>
+
+    </form>
+
+    <a class="link-cancelar" asp-action="Index">← Cancelar y volver al catálogo</a>
+
+</div>

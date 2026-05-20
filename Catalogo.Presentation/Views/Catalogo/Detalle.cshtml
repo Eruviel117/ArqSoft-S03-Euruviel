@@ -1,0 +1,65 @@
+﻿@model CatalogoApp.Domain.Models.Item
+
+<div class="detalle-container">
+
+    <!-- Lado izquierdo - imagen/ícono -->
+    <div class="detalle-imagen">
+        <img src="@Model.ImagenUrl" alt="@Model.Titulo" />
+    </div>
+
+    <!-- Lado derecho - información -->
+    <div class="detalle-info">
+
+        <!-- Título y badge -->
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h1>@Model.Titulo</h1>
+            @if (Model.Estado == "Terminado")
+            {
+                <span class="badge-terminado">✔ @Model.Estado</span>
+            }
+            else if (Model.Estado == "Viendo")
+            {
+                <span class="badge-viendo">▶ @Model.Estado</span>
+            }
+            else
+            {
+                <span class="badge-pausado">⏸ @Model.Estado</span>
+            }
+        </div>
+
+        <div class="detalle-linea"></div>
+
+        <!-- Datos del anime -->
+        <p>🎭 <strong style="color: white;">Género:</strong> @Model.Genero</p>
+        <p>🏢 <strong style="color: white;">Estudio:</strong> @Model.Estudio</p>
+        <p>📅 <strong style="color: white;">Año:</strong> @Model.Ano</p>
+
+        <!-- Calificación con estrellitas -->
+        <p>
+            ⭐ <strong style="color: white;">Calificación:</strong>
+            @for (int i = 1; i <= 10; i++)
+            {
+                if (i <= Model.Calificacion)
+                {
+                    <span style="color: #f1c40f;">⭐</span>
+                }
+                else
+                {
+                    <span style="color: #333;">⭐</span>
+                }
+            }
+            <span style="color: #aaa; font-size: 13px;">(@Model.Calificacion/10)</span>
+        </p>
+
+        <!-- Descripción -->
+        <p class="detalle-descripcion">
+            📖 <strong style="color: white;">Descripción:</strong><br />
+            @Model.Descripcion
+        </p>
+
+        <!-- Botón volver -->
+        <a class="btn-volver" asp-action="Index">← Volver al Catálogo</a>
+
+    </div>
+
+</div>

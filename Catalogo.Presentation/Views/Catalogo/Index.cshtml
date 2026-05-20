@@ -1,0 +1,87 @@
+﻿@model List<CatalogoApp.Domain.Models.Item>
+@using CatalogoApp.Domain.Models
+
+
+<h1>Mi Catálogo</h1>
+
+<!-- Filtro por género -->
+
+
+<div style="padding: 30px;">
+
+    <!-- Título -->
+    <h1 style="color: #e94560; font-size: 36px; font-weight: bold;
+        text-transform: uppercase; letter-spacing: 2px;">
+        🎌 Mi Catálogo de Anime
+    </h1>
+    <div style="width: 80px; height: 4px; background-color: #e94560; margin-bottom: 25px;"></div>
+
+    <!-- Filtros por género -->
+    <div style="margin-bottom: 25px;">
+        <a class="filtro-btn" asp-action="Index">Todos</a>
+        
+        @foreach (var gen in ViewBag.Generos as List<string> ?? new List<string>())
+        {
+            <a class="filtro-btn" asp-action="Index" asp-route-genero="@gen">@gen</a>
+        }
+    </div>
+
+    <!-- Cuadrícula de tarjetas -->
+    <div class="catalogo-grid">
+        @foreach (var item in Model)
+        {
+            <div class="anime-card">
+
+                <!-- Título y badge de estado -->
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                    <h3>@item.Titulo</h3>
+                    @if (item.Estado == "Terminado")
+                    {
+                        <span class="badge-terminado">✔ @item.Estado</span>
+                    }
+                    else if (item.Estado == "Viendo")
+                    {
+                        <span class="badge-viendo">▶ @item.Estado</span>
+                    }
+                    else
+                    {
+                        <span class="badge-pausado">⏸ @item.Estado</span>
+                    }
+                </div>
+
+                <!-- Info del anime -->
+                <p>🎭 <strong style="color: white;">Género:</strong> @item.Genero</p>
+                <p>🏢 <strong style="color: white;">Estudio:</strong> @item.Estudio</p>
+                <p>📅 <strong style="color: white;">Año:</strong> @item.Ano</p>
+
+                <!-- Calificación con estrellitas -->
+                <p>
+                    @for (int i = 1; i <= 10; i++)
+                    {
+                        if (i <= item.Calificacion)
+                        {
+                            <span style="color: #f1c40f;">⭐</span>
+                        }
+                        else
+                        {
+                            <span style="color: #333;">⭐</span>
+                        }
+                    }
+                    <span style="color: #aaa; font-size: 12px;">(@item.Calificacion/10)</span>
+                </p>
+
+                <!-- Botón de detalle -->
+                <a class="btn-detalle" asp-action="Detalle" asp-route-id="@item.Id">
+                    Ver detalle →
+                </a>
+
+            </div>
+        }
+    </div>
+
+           <hr style="border-color: #333; margin-top: 30px;" />
+    <a href="/Catalogo/Agregar" class="btn-catalogo" style="display: inline-block; margin-top: 15px;">
+        + Agregar Anime </a>
+
+</div>
+
