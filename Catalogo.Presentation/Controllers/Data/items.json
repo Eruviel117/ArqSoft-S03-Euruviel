@@ -1,10 +1,35 @@
 [
   {
     "Id": 1,
-    "Titulo": "Devil May Cry",
-    "Genero": "Hack and Slash",
-    "Consola": "PlayStation 2",
-    "Ano": 2001,
-    "Descripcion": "Dante, cazador de demonios, enfrenta a Mundus."
+    "Titulo": "Attack on Titan",
+    "Genero": "Acción",
+    "Estudio": "Mappa",
+    "ImagenUrl": "https://cdn.myanimelist.net/images/anime/10/47347.jpg",
+    "Ano": 2013,
+    "Estado": "Terminado",
+    "Calificacion": 10,
+    "Descripcion": "La humanidad vive encerrada en ciudades rodeadas de enormes murallas para protegerse de los Titanes."
+  },
+  {
+    "Id": 2,
+    "Titulo": "Demon Slayer",
+    "Genero": "Acción",
+    "Estudio": "Ufotable",
+    "ImagenUrl": "https://cdn.myanimelist.net/images/anime/1286/99889.jpg",
+    "Ano": 2019,
+    "Estado": "Viendo",
+    "Calificacion": 9,
+    "Descripcion": "Tanjiro busca la cura para su hermana convertida en demonio."
+  },
+  {
+    "Id": 3,
+    "Titulo": "Fullmetal Alchemist Brotherhood",
+    "Genero": "Aventura",
+    "Estudio": "Bones",
+    "ImagenUrl": "https://cdn.myanimelist.net/images/anime/1223/96541.jpg",
+    "Ano": 2009,
+    "Estado": "Terminado",
+    "Calificacion": 10,
+    "Descripcion": "Dos hermanos alquimistas buscan la piedra filosofal tras perder sus cuerpos."
   }
 ]
