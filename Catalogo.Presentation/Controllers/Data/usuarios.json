@@ -3,5 +3,10 @@
     "Id": 1,
     "NombreUsuario": "Tomioka giyu",
     "Password": "cortana117"
+  },
+  {
+    "Id": 2,
+    "NombreUsuario": "Iguro",
+    "Password": "Cortana117"
   }
 ]

@@ -1,65 +1,165 @@
 ﻿@model CatalogoApp.Domain.Models.Item
+@{
+    var comentarios = ViewBag.Comentarios as List<CatalogoApp.Domain.Models.Comentario> ?? new();
+    var usuarioActual = ViewBag.Usuario as string;
+}
 
 <div class="detalle-container">
 
-    <!-- Lado izquierdo - imagen/ícono -->
+    <!-- Imagen -->
     <div class="detalle-imagen">
-        <img src="@Model.ImagenUrl" alt="@Model.Titulo" />
+        @if (!string.IsNullOrEmpty(Model.ImagenUrl))
+        {
+            <img src="@Model.ImagenUrl" alt="@Model.Titulo"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+            <div class="detalle-imagen-placeholder" style="display:none;">🎌</div>
+        }
+        else
+        {
+            <div class="detalle-imagen-placeholder">🎌</div>
+        }
+
+        <!-- Botones acción bajo imagen -->
+        <div style="display:flex; gap:8px; margin-top:12px;">
+            <a class="btn-anime btn-outline-anime" style="flex:1; text-align:center;"
+               asp-action="Editar" asp-route-id="@Model.Id">✏️ Editar</a>
+            <a class="btn-anime btn-danger-anime"
+               asp-action="Eliminar" asp-route-id="@Model.Id"
+               onclick="return confirm('¿Eliminar @Model.Titulo?')">🗑</a>
+        </div>
     </div>
 
-    <!-- Lado derecho - información -->
+    <!-- Info -->
     <div class="detalle-info">
 
-        <!-- Título y badge -->
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-            <h1>@Model.Titulo</h1>
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+            <h1 style="font-family:'Bangers',cursive; font-size:2.8rem;
+                letter-spacing:2px; color:white;">
+                @Model.Titulo
+            </h1>
             @if (Model.Estado == "Terminado")
             {
                 <span class="badge-terminado">✔ @Model.Estado</span>
             }
             else if (Model.Estado == "Viendo")
             {
+
                 <span class="badge-viendo">▶ @Model.Estado</span>
             }
-            else
+            else if (!string.IsNullOrEmpty(Model.Estado))
             {
+
                 <span class="badge-pausado">⏸ @Model.Estado</span>
             }
         </div>
 
         <div class="detalle-linea"></div>
 
-        <!-- Datos del anime -->
-        <p>🎭 <strong style="color: white;">Género:</strong> @Model.Genero</p>
-        <p>🏢 <strong style="color: white;">Estudio:</strong> @Model.Estudio</p>
-        <p>📅 <strong style="color: white;">Año:</strong> @Model.Ano</p>
+        <p>🎭 <strong style="color:var(--pink);">Género:</strong> @Model.Genero</p>
+        <p>🏢 <strong style="color:var(--pink);">Estudio:</strong> @Model.Estudio</p>
+        <p>📅 <strong style="color:var(--pink);">Año:</strong> @Model.Ano</p>
 
-        <!-- Calificación con estrellitas -->
-        <p>
-            ⭐ <strong style="color: white;">Calificación:</strong>
+        <p style="margin:12px 0;">
+            ⭐ <strong style="color:var(--pink);">Calificación:</strong>
             @for (int i = 1; i <= 10; i++)
             {
-                if (i <= Model.Calificacion)
-                {
-                    <span style="color: #f1c40f;">⭐</span>
-                }
-                else
-                {
-                    <span style="color: #333;">⭐</span>
-                }
+                <span style="color:@(i <= Model.Calificacion ? "#fbbf24" : "#333");">⭐</span>
             }
-            <span style="color: #aaa; font-size: 13px;">(@Model.Calificacion/10)</span>
+            <span style="color:#aaa; font-size:13px;">(@Model.Calificacion/10)</span>
         </p>
 
-        <!-- Descripción -->
-        <p class="detalle-descripcion">
-            📖 <strong style="color: white;">Descripción:</strong><br />
+        <div class="detalle-descripcion">
+            📖 <strong style="color:var(--pink);">Descripción:</strong><br />
             @Model.Descripcion
-        </p>
+        </div>
 
-        <!-- Botón volver -->
-        <a class="btn-volver" asp-action="Index">← Volver al Catálogo</a>
-
+        <a class="btn-anime btn-outline-anime" style="margin-top:20px; display:inline-block;"
+           asp-action="Index">← Volver al Catálogo</a>
     </div>
+</div>
 
+<!-- SECCIÓN COMENTARIOS -->
+<div style="margin-top:48px;">
+    <h2 class="seccion-titulo" style="font-size:2rem;">💬 Comentarios</h2>
+    <div class="seccion-linea"></div>
+
+    <!-- Formulario nuevo comentario -->
+    @if (usuarioActual != null)
+    {
+        <div style="background:var(--card-bg); border-radius:var(--radius);
+            border:1px solid rgba(168,85,247,0.25); padding:24px; margin-bottom:32px;">
+            <h3 style="color:var(--pink); font-size:1.1rem; margin-bottom:16px;">
+                ✍️ Deja tu opinión, <span style="color:var(--yellow);">@usuarioActual</span>
+            </h3>
+            <form asp-action="AgregarComentario" method="post">
+                <input type="hidden" name="itemId" value="@Model.Id" />
+
+                <label class="form-label-anime">Tu comentario</label>
+                <textarea class="form-input-anime" name="texto" rows="3"
+                          placeholder="¿Qué te pareció este anime?" required></textarea>
+
+                <label class="form-label-anime" style="margin-top:12px;">Calificación</label>
+                <div style="display:flex; gap:8px; margin:8px 0 16px; flex-wrap:wrap;">
+                    @for (int i = 1; i <= 10; i++)
+                    {
+                        <label style="display:flex; flex-direction:column; align-items:center;
+                            cursor:pointer; color:#aaa; font-size:0.8rem;">
+                            <input type="radio" name="calificacion" value="@i"
+                                   style="margin-bottom:4px;" @(i == 5 ? "checked" : "") />
+                            @i⭐
+                        </label>
+                    }
+                </div>
+
+                <button type="submit" class="btn-anime btn-primary-anime">
+                    💬 Publicar comentario
+                </button>
+            </form>
+        </div>
+    }
+    else
+    {
+        <div style="background:var(--card-bg); border-radius:var(--radius);
+            border:1px solid rgba(168,85,247,0.2); padding:20px;
+            text-align:center; margin-bottom:32px; color:rgba(226,232,240,0.6);">
+            <a asp-controller="Auth" asp-action="Login"
+               style="color:var(--pink); font-weight:700;">Inicia sesión</a>
+            para dejar un comentario.
+        </div>
+    }
+
+    <!-- Lista de comentarios -->
+    @if (!comentarios.Any())
+    {
+        <p style="color:rgba(226,232,240,0.4); text-align:center; padding:24px;">
+            Aún no hay comentarios. ¡Sé el primero!
+        </p>
+    }
+    else
+    {
+        <div style="display:flex; flex-direction:column; gap:16px;">
+            @foreach (var c in comentarios)
+            {
+                <div style="background:var(--card-bg); border-radius:var(--radius);
+                    border:1px solid rgba(168,85,247,0.2); padding:20px;">
+                    <div style="display:flex; justify-content:space-between;
+                        align-items:center; margin-bottom:8px;">
+                        <span style="font-weight:700; color:var(--pink);">👤 @c.Usuario</span>
+                        <span style="font-size:0.8rem; color:rgba(226,232,240,0.4);">
+                            @c.Fecha.ToString("dd MMM yyyy, HH:mm")
+                        </span>
+                    </div>
+                    <div style="margin-bottom:8px;">
+                        @for (int i = 1; i <= 10; i++)
+                        {
+                            <span style="color:@(i <= c.Calificacion ? "#fbbf24" : "#333");
+                            font-size:0.85rem;">⭐</span>
+                        }
+                        <span style="color:#aaa; font-size:0.8rem;">(@c.Calificacion/10)</span>
+                    </div>
+                    <p style="color:rgba(226,232,240,0.85); line-height:1.6;">@c.Texto</p>
+                </div>
+            }
+        </div>
+    }
 </div>

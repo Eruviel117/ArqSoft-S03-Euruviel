@@ -9,11 +9,15 @@ var jsonPath = Path.Combine(
     builder.Environment.ContentRootPath, "Controllers", "Data", "items.json");
 var usuariosPath = Path.Combine(
     builder.Environment.ContentRootPath, "Controllers", "Data", "usuarios.json");
+var comentariosPath = Path.Combine(
+    builder.Environment.ContentRootPath, "Controllers", "Data", "comentarios.json");
 
 // Repositorios y servicios
 builder.Services.AddSingleton<IItemRepository>(new JsonItemRepository(jsonPath));
 builder.Services.AddScoped<ItemService>();
 builder.Services.AddSingleton<UsuarioService>(new UsuarioService(usuariosPath));
+builder.Services.AddSingleton<ComentarioService>(new ComentarioService(comentariosPath));
+
 
 // Sesiones
 builder.Services.AddDistributedMemoryCache();
