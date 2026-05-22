@@ -6,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Ruta del archivo JSON — se guarda en la carpeta "data" del proyecto
 var jsonPath = Path.Combine(
-    builder.Environment.ContentRootPath, "data", "items.json");
+    builder.Environment.ContentRootPath, "Controllers", "Data", "items.json");
 
 // Registrar el repositorio JSON como implementación de IItemRepository
 builder.Services.AddSingleton<IItemRepository>(
