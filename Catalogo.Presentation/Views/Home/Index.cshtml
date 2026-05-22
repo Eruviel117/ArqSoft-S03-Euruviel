@@ -1,8 +1,125 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Inicio";
+    var top3 = ViewBag.Top3 as List<CatalogoApp.Domain.Models.Item> ?? new();
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<!-- HERO -->
+<div style="text-align:center; padding: 60px 20px 40px;">
+    <h1 style="font-family:'Bangers',cursive; font-size:4rem; letter-spacing:4px;
+        background:linear-gradient(90deg,var(--pink),var(--purple),var(--blue));
+        -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+        margin-bottom:12px;">
+        🎌 ANIMEVAULT
+    </h1>
+    <p style="color:rgba(226,232,240,0.7); font-size:1.15rem; max-width:520px; margin:0 auto 28px;">
+        Tu colección personal de anime. Explora, organiza y descubre tus series favoritas.
+    </p>
+    <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+        <a class="btn-anime btn-primary-anime" style="font-size:1rem; padding:12px 28px;"
+           asp-controller="Catalogo" asp-action="Index">
+            📋 Ver Catálogo
+        </a>
+        @if (Context.Session.GetString("Usuario") == null)
+        {
+            <a class="btn-anime btn-outline-anime" style="font-size:1rem; padding:12px 28px;"
+               asp-controller="Auth" asp-action="Registro">
+                ✨ Crear cuenta
+            </a>
+        }
+        else
+        {
+            <a class="btn-anime btn-secondary-anime" style="font-size:1rem; padding:12px 28px;"
+               asp-controller="Catalogo" asp-action="Agregar">
+                ➕ Agregar Anime
+            </a>
+        }
+    </div>
 </div>
+
+<!-- ESTADÍSTICAS -->
+<div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+    gap:16px; margin:20px 0 48px;">
+
+    <div style="background:var(--card-bg); border-radius:var(--radius);
+        border:1px solid rgba(168,85,247,0.25); padding:24px; text-align:center;">
+        <div style="font-size:2.5rem; font-family:'Bangers',cursive;
+            color:var(--pink);">
+            @ViewBag.Total
+        </div>
+        <div style="color:rgba(226,232,240,0.6); font-size:0.9rem; margin-top:4px;">
+            📚 Total Animes
+        </div>
+    </div>
+
+    <div style="background:var(--card-bg); border-radius:var(--radius);
+        border:1px solid rgba(16,185,129,0.25); padding:24px; text-align:center;">
+        <div style="font-size:2.5rem; font-family:'Bangers',cursive;
+            color:#10b981;">
+            @ViewBag.Terminados
+        </div>
+        <div style="color:rgba(226,232,240,0.6); font-size:0.9rem; margin-top:4px;">
+            ✔ Terminados
+        </div>
+    </div>
+
+    <div style="background:var(--card-bg); border-radius:var(--radius);
+        border:1px solid rgba(56,189,248,0.25); padding:24px; text-align:center;">
+        <div style="font-size:2.5rem; font-family:'Bangers',cursive;
+            color:var(--blue);">
+            @ViewBag.Viendo
+        </div>
+        <div style="color:rgba(226,232,240,0.6); font-size:0.9rem; margin-top:4px;">
+            ▶ Viendo
+        </div>
+    </div>
+
+    <div style="background:var(--card-bg); border-radius:var(--radius);
+        border:1px solid rgba(251,191,36,0.25); padding:24px; text-align:center;">
+        <div style="font-size:2.5rem; font-family:'Bangers',cursive;
+            color:var(--yellow);">
+            @ViewBag.Pausados
+        </div>
+        <div style="color:rgba(226,232,240,0.6); font-size:0.9rem; margin-top:4px;">
+            ⏸ Pausados
+        </div>
+    </div>
+
+</div>
+
+<!-- TOP 3 -->
+@if (top3.Any())
+{
+    <h2 class="seccion-titulo" style="font-size:2rem;">⭐ Mejor Calificados</h2>
+    <div class="seccion-linea"></div>
+
+    <div class="catalogo-grid" style="grid-template-columns:repeat(auto-fill,minmax(200px,1fr));">
+        @foreach (var item in top3)
+        {
+            <div class="anime-card">
+                @if (!string.IsNullOrEmpty(item.ImagenUrl))
+                {
+                    <img class="anime-card-img" src="@item.ImagenUrl" alt="@item.Titulo"
+                         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+                    <div class="anime-card-img-placeholder" style="display:none;">🎌</div>
+                }
+                else
+                {
+                    <div class="anime-card-img-placeholder">🎌</div>
+                }
+                <div class="anime-card-body">
+                    <div class="anime-card-title">@item.Titulo</div>
+                    <p class="anime-card-meta">🎭 @item.Genero</p>
+                    <p class="anime-card-meta" style="color:var(--yellow); font-weight:700;">
+                        ⭐ @item.Calificacion/10
+                    </p>
+                    <div class="anime-card-footer">
+                        <a class="btn-anime btn-secondary-anime" style="flex:1; font-size:0.8rem;"
+                           asp-controller="Catalogo" asp-action="Detalle" asp-route-id="@item.Id">
+                            👁 Ver detalle
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}

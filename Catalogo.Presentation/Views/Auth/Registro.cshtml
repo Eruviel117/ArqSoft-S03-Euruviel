@@ -1,0 +1,29 @@
+﻿<div class="form-card">
+    <h2 style="font-family:'Bangers',cursive; font-size:2rem; color:var(--purple); margin-bottom:4px;">
+        ✨ Crear Cuenta
+    </h2>
+    <div class="seccion-linea"></div>
+
+    @if (ViewBag.Error != null)
+    {
+        <div style="background:rgba(239,68,68,0.15); border:1px solid #ef4444;
+            border-radius:8px; padding:10px 14px; margin-bottom:16px; color:#ef4444;">
+            ⚠️ @ViewBag.Error
+        </div>
+    }
+
+    <form asp-action="Registro" method="post">
+        <label class="form-label-anime">👤 Nombre de usuario</label>
+        <input class="form-input-anime" name="nombreUsuario" placeholder="Ej: otaku123" />
+
+        <label class="form-label-anime">🔑 Contraseña</label>
+        <input class="form-input-anime" name="password" type="password" placeholder="Mínimo 4 caracteres" />
+
+        <button type="submit" class="btn-guardar">✨ Crear cuenta</button>
+    </form>
+
+    <p style="text-align:center; margin-top:16px; color:rgba(226,232,240,0.6);">
+        ¿Ya tienes cuenta?
+        <a asp-action="Login" style="color:var(--pink); font-weight:700;">Inicia sesión</a>
+    </p>
+</div>

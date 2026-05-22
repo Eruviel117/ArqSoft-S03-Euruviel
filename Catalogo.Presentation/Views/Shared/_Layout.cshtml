@@ -17,7 +17,23 @@
                 <div class="nav-links">
                     <a asp-controller="Catalogo" asp-action="Index">📋 Catálogo</a>
                     <a asp-controller="Catalogo" asp-action="Agregar">➕ Agregar</a>
-                    <a asp-controller="Home" asp-action="Privacy">🔒 Privacidad</a>
+                    @if (Context.Session.GetString("Usuario") != null)
+                    {
+                        <span style="color:var(--yellow); font-weight:700;">
+                            👤 @Context.Session.GetString("Usuario")
+                        </span>
+                        <a asp-controller="Auth" asp-action="Logout"
+                           style="color:rgba(226,232,240,0.5);">Salir</a>
+                    }
+                    else
+                    {
+                        <a asp-controller="Auth" asp-action="Login">🔐 Login</a>
+                        <a asp-controller="Auth" asp-action="Registro"
+                           style="background:linear-gradient(90deg,var(--pink),var(--purple));
+                            padding:6px 16px; border-radius:8px; color:white;">
+                            ✨ Registro
+                        </a>
+                    }
                 </div>
             </div>
         </nav>

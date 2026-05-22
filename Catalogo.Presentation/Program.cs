@@ -4,24 +4,30 @@ using CatalogoApp.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Ruta del archivo JSON — se guarda en la carpeta "data" del proyecto
+// Rutas JSON
 var jsonPath = Path.Combine(
     builder.Environment.ContentRootPath, "Controllers", "Data", "items.json");
+var usuariosPath = Path.Combine(
+    builder.Environment.ContentRootPath, "Controllers", "Data", "usuarios.json");
 
-// Registrar el repositorio JSON como implementación de IItemRepository
-builder.Services.AddSingleton<IItemRepository>(
-    new JsonItemRepository(jsonPath)
-);
-
-// Registrar el servicio de Application
+// Repositorios y servicios
+builder.Services.AddSingleton<IItemRepository>(new JsonItemRepository(jsonPath));
 builder.Services.AddScoped<ItemService>();
+builder.Services.AddSingleton<UsuarioService>(new UsuarioService(usuariosPath));
 
-// Agregar soporte para controladores con vistas
+// Sesiones
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
@@ -29,7 +35,9 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseStaticFiles();
 app.UseRouting();
+app.UseSession();
 app.UseAuthorization();
 app.MapStaticAssets();
 

@@ -1,0 +1,29 @@
+﻿<div class="form-card">
+    <h2 style="font-family:'Bangers',cursive; font-size:2rem; color:var(--pink); margin-bottom:4px;">
+        🔐 Iniciar Sesión
+    </h2>
+    <div class="seccion-linea"></div>
+
+    @if (ViewBag.Error != null)
+    {
+        <div style="background:rgba(239,68,68,0.15); border:1px solid #ef4444;
+            border-radius:8px; padding:10px 14px; margin-bottom:16px; color:#ef4444;">
+            ⚠️ @ViewBag.Error
+        </div>
+    }
+
+    <form asp-action="Login" method="post">
+        <label class="form-label-anime">👤 Usuario</label>
+        <input class="form-input-anime" name="nombreUsuario" placeholder="Tu nombre de usuario" />
+
+        <label class="form-label-anime">🔑 Contraseña</label>
+        <input class="form-input-anime" name="password" type="password" placeholder="Tu contraseña" />
+
+        <button type="submit" class="btn-guardar">▶ Entrar</button>
+    </form>
+
+    <p style="text-align:center; margin-top:16px; color:rgba(226,232,240,0.6);">
+        ¿No tienes cuenta?
+        <a asp-action="Registro" style="color:var(--pink); font-weight:700;">Regístrate aquí</a>
+    </p>
+</div>
