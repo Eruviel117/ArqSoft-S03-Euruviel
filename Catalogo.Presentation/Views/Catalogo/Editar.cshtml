@@ -1,0 +1,46 @@
+﻿@model CatalogoApp.Domain.Models.Item
+
+<div class="form-card">
+    <h2 style="font-family:'Bangers',cursive; font-size:2rem; color:var(--pink); margin-bottom:4px;">
+        ✏️ Editar Anime
+    </h2>
+    <div class="seccion-linea"></div>
+
+    <form asp-action="Editar" method="post">
+        <input type="hidden" asp-for="Id" />
+
+        <label class="form-label-anime">Título</label>
+        <input class="form-input-anime" asp-for="Titulo" />
+
+        <label class="form-label-anime">Género</label>
+        <input class="form-input-anime" asp-for="Genero" />
+
+        <label class="form-label-anime">Estudio</label>
+        <input class="form-input-anime" asp-for="Estudio" />
+
+        <label class="form-label-anime">🖼️ URL de Portada</label>
+        <input class="form-input-anime" asp-for="ImagenUrl"
+               placeholder="https://imagen.com/portada.jpg" />
+
+        <label class="form-label-anime">Año</label>
+        <input class="form-input-anime" asp-for="Ano" type="number" />
+
+        <label class="form-label-anime">Estado</label>
+        <select class="form-input-anime" asp-for="Estado">
+            <option value="">-- Selecciona --</option>
+            <option value="Viendo">▶ Viendo</option>
+            <option value="Terminado">✔ Terminado</option>
+            <option value="Pausado">⏸ Pausado</option>
+        </select>
+
+        <label class="form-label-anime">Calificación (1-10)</label>
+        <input class="form-input-anime" asp-for="Calificacion" type="number" min="1" max="10" />
+
+        <label class="form-label-anime">Descripción</label>
+        <textarea class="form-input-anime" asp-for="Descripcion" rows="3"></textarea>
+
+        <button type="submit" class="btn-guardar">💾 Guardar Cambios</button>
+    </form>
+
+    <a class="link-cancelar" asp-action="Index">← Cancelar y volver</a>
+</div>

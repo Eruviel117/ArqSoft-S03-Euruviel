@@ -33,6 +33,20 @@ namespace CatalogoApp.Presentation.Controllers
             var item = _service.ObtenerPorId(id);
             return item == null ? NotFound() : View(item);
         }
+        // Editar — GET
+        public IActionResult Editar(int id)
+        {
+            var item = _service.ObtenerPorId(id);
+            return item == null ? NotFound() : View(item);
+        }
+
+        // Editar — POST
+        [HttpPost]
+        public IActionResult Editar(Item item)
+        {
+            _service.Editar(item);
+            return RedirectToAction("Index");
+        }
 
         // Formulario — GET
         public IActionResult Agregar()
@@ -42,10 +56,25 @@ namespace CatalogoApp.Presentation.Controllers
 
         // Formulario — POST
         [HttpPost]
-        public IActionResult Agregar(Item item)
+        public IActionResult Index(string? genero, string? orden)
         {
-            _service.Agregar(item);
-            return RedirectToAction("Index");
+            var items = string.IsNullOrEmpty(genero)
+                ? _service.ObtenerTodos()
+                : _service.ObtenerPorGenero(genero);
+
+            items = orden switch
+            {
+                "calificacion" => items.OrderByDescending(i => i.Calificacion).ToList(),
+                "ano" => items.OrderByDescending(i => i.Ano).ToList(),
+                "titulo" => items.OrderBy(i => i.Titulo).ToList(),
+                _ => items
+            };
+
+            ViewBag.Generos = _service.ObtenerGeneros();
+            ViewBag.GeneroActual = genero;
+            ViewBag.Orden = orden;
+
+            return View(items);
         }
 
         // Eliminar
@@ -54,5 +83,6 @@ namespace CatalogoApp.Presentation.Controllers
             _service.Eliminar(id);
             return RedirectToAction("Index");
         }
+
     }
 }

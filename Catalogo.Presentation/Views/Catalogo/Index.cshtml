@@ -1,87 +1,110 @@
 ﻿@model List<CatalogoApp.Domain.Models.Item>
-@using CatalogoApp.Domain.Models
 
+<!-- Título -->
+<h1 class="seccion-titulo">🎌 Mi Catálogo Anime</h1>
+<div class="seccion-linea"></div>
 
-<h1>Mi Catálogo</h1>
+<!-- Filtros y ordenamiento -->
+<div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:16px; margin-bottom:8px;">
 
-<!-- Filtro por género -->
-
-
-<div style="padding: 30px;">
-
-    <!-- Título -->
-    <h1 style="color: #e94560; font-size: 36px; font-weight: bold;
-        text-transform: uppercase; letter-spacing: 2px;">
-        🎌 Mi Catálogo de Anime
-    </h1>
-    <div style="width: 80px; height: 4px; background-color: #e94560; margin-bottom: 25px;"></div>
-
-    <!-- Filtros por género -->
-    <div style="margin-bottom: 25px;">
-        <a class="filtro-btn" asp-action="Index">Todos</a>
-        
+    <div class="filtros-wrap">
+        <span style="color:var(--pink); font-weight:700;">Género:</span>
+        <a class="filtro-btn @(ViewBag.GeneroActual == null ? "active" : "")" asp-action="Index">Todos</a>
         @foreach (var gen in ViewBag.Generos as List<string> ?? new List<string>())
         {
-            <a class="filtro-btn" asp-action="Index" asp-route-genero="@gen">@gen</a>
+            <a class="filtro-btn @(ViewBag.GeneroActual == gen ? "active" : "")"
+               asp-action="Index" asp-route-genero="@gen">@gen</a>
         }
     </div>
 
-    <!-- Cuadrícula de tarjetas -->
-    <div class="catalogo-grid">
-        @foreach (var item in Model)
-        {
-            <div class="anime-card">
-
-                <!-- Título y badge de estado -->
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                    <h3>@item.Titulo</h3>
-                    @if (item.Estado == "Terminado")
-                    {
-                        <span class="badge-terminado">✔ @item.Estado</span>
-                    }
-                    else if (item.Estado == "Viendo")
-                    {
-                        <span class="badge-viendo">▶ @item.Estado</span>
-                    }
-                    else
-                    {
-                        <span class="badge-pausado">⏸ @item.Estado</span>
-                    }
-                </div>
-
-                <!-- Info del anime -->
-                <p>🎭 <strong style="color: white;">Género:</strong> @item.Genero</p>
-                <p>🏢 <strong style="color: white;">Estudio:</strong> @item.Estudio</p>
-                <p>📅 <strong style="color: white;">Año:</strong> @item.Ano</p>
-
-                <!-- Calificación con estrellitas -->
-                <p>
-                    @for (int i = 1; i <= 10; i++)
-                    {
-                        if (i <= item.Calificacion)
-                        {
-                            <span style="color: #f1c40f;">⭐</span>
-                        }
-                        else
-                        {
-                            <span style="color: #333;">⭐</span>
-                        }
-                    }
-                    <span style="color: #aaa; font-size: 12px;">(@item.Calificacion/10)</span>
-                </p>
-
-                <!-- Botón de detalle -->
-                <a class="btn-detalle" asp-action="Detalle" asp-route-id="@item.Id">
-                    Ver detalle →
-                </a>
-
-            </div>
-        }
+    <div class="orden-wrap">
+        <span style="color:var(--blue); font-weight:700;">Ordenar:</span>
+        <a class="orden-btn @(ViewBag.Orden == "calificacion" ? "active" : "")"
+           asp-action="Index" asp-route-genero="@ViewBag.GeneroActual" asp-route-orden="calificacion">⭐ Calificación</a>
+        <a class="orden-btn @(ViewBag.Orden == "ano" ? "active" : "")"
+           asp-action="Index" asp-route-genero="@ViewBag.GeneroActual" asp-route-orden="ano">📅 Año</a>
+        <a class="orden-btn @(ViewBag.Orden == "titulo" ? "active" : "")"
+           asp-action="Index" asp-route-genero="@ViewBag.GeneroActual" asp-route-orden="titulo">🔤 Título</a>
     </div>
-
-           <hr style="border-color: #333; margin-top: 30px;" />
-    <a href="/Catalogo/Agregar" class="btn-catalogo" style="display: inline-block; margin-top: 15px;">
-        + Agregar Anime </a>
 
 </div>
 
+<!-- Botón agregar -->
+<div style="text-align:right; margin-bottom:16px;">
+    <a class="btn-anime btn-primary-anime" asp-action="Agregar">➕ Agregar Anime</a>
+</div>
+
+<!-- Cuadrícula -->
+<div class="catalogo-grid">
+    @foreach (var item in Model)
+    {
+        <div class="anime-card">
+
+            <!-- Portada -->
+            @if (!string.IsNullOrEmpty(item.ImagenUrl))
+            {
+                <img class="anime-card-img" src="@item.ImagenUrl" alt="@item.Titulo"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+                <div class="anime-card-img-placeholder" style="display:none;">🎌</div>
+            }
+            else
+            {
+                <div class="anime-card-img-placeholder">🎌</div>
+            }
+
+            <div class="anime-card-body">
+
+                <!-- Título y badge -->
+                <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:6px; margin-bottom:8px;">
+                    <div class="anime-card-title">@item.Titulo</div>
+                    @if (item.Estado == "Terminado")
+                    {
+                        <span class="badge-terminado">✔</span>
+                    }
+                    else if (item.Estado == "Viendo")
+                    {
+                        <span class="badge-viendo">▶</span>
+                    }
+                    else if (!string.IsNullOrEmpty(item.Estado))
+                    {
+                        <span class="badge-pausado">⏸</span>
+                    }
+                </div>
+
+                <p class="anime-card-meta">🎭 @item.Genero</p>
+                <p class="anime-card-meta">🏢 @item.Estudio</p>
+                <p class="anime-card-meta">📅 @item.Ano</p>
+
+                <!-- Estrellas -->
+                <p style="margin:8px 0; font-size:0.85rem;">
+                    @for (int i = 1; i <= 10; i++)
+                    {
+                        <span style="color: @(i <= item.Calificacion ? "#fbbf24" : "#333");">⭐</span>
+                    }
+                    <span style="color:#aaa; font-size:11px;">(@item.Calificacion/10)</span>
+                </p>
+
+                <!-- Botones -->
+                <div class="anime-card-footer">
+                    <a class="btn-anime btn-secondary-anime" style="flex:1; font-size:0.8rem;"
+                       asp-action="Detalle" asp-route-id="@item.Id">👁 Detalle</a>
+                    <a class="btn-anime btn-outline-anime" style="flex:1; font-size:0.8rem;"
+                       asp-action="Editar" asp-route-id="@item.Id">✏️ Editar</a>
+                    <a class="btn-anime btn-danger-anime" style="font-size:0.8rem;"
+                       asp-action="Eliminar" asp-route-id="@item.Id"
+                       onclick="return confirm('¿Eliminar @item.Titulo?')">🗑</a>
+                </div>
+
+            </div>
+        </div>
+    }
+</div>
+
+@if (!Model.Any())
+{
+    <div style="text-align:center; padding:60px; color:rgba(226,232,240,0.4);">
+        <div style="font-size:4rem;">📭</div>
+        <p style="margin-top:16px; font-size:1.1rem;">No hay animes aún. ¡Agrega el primero!</p>
+        <a class="btn-anime btn-primary-anime" style="margin-top:16px;" asp-action="Agregar">➕ Agregar Anime</a>
+    </div>
+}

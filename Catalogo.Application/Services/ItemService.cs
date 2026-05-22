@@ -26,6 +26,16 @@ namespace CatalogoApp.Application.Services
         {
             return _repo.ObtenerPorId(id);
         }
+        public void Editar(Item itemEditado)
+        {
+            var items = _repo.ObtenerTodos();  // ← cambiar _repository por _repo
+            var index = items.FindIndex(i => i.Id == itemEditado.Id);
+            if (index >= 0)
+            {
+                items[index] = itemEditado;
+                _repo.Guardar(items);  // ← igual aquí
+            }
+        }
 
         public void Agregar(Item item)
         {
@@ -38,6 +48,7 @@ namespace CatalogoApp.Application.Services
         {
             _repo.Eliminar(id);
         }
+
 
         // Método útil para el filtro por categoría/género
         public List<Item> ObtenerPorGenero(string genero)
