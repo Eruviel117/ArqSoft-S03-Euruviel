@@ -102,14 +102,27 @@ Los datos se almacenan en archivos **JSON** dentro de `Controllers/Data/`:
 ###  Página de inicio
 > Hero con estadísticas y top 3 mejor calificados
 
+<img width="1919" height="1064" alt="Captura de pantalla 2026-05-22 183511" src="https://github.com/user-attachments/assets/99ffde95-8062-4ec2-9b34-351b0720b513" />
+
+
 ###  Catálogo
 > Cuadrícula de tarjetas con portadas, filtros y ordenamiento
+
+<img width="1919" height="1079" alt="Captura de pantalla 2026-05-22 183526" src="https://github.com/user-attachments/assets/f8ddee5c-7882-4f52-85e1-5645b799afdf" />
+
 
 ###  Vista de detalle
 > Información completa del anime con sección de comentarios
 
+<img width="1919" height="1050" alt="Captura de pantalla 2026-05-22 183702" src="https://github.com/user-attachments/assets/a6c77daa-1015-457a-9101-81cda9e15d43" />
+
+
+
 ###  Login y Registro
 > Formularios de autenticación con diseño anime
+
+<img width="1919" height="1034" alt="Captura de pantalla 2026-05-22 183556" src="https://github.com/user-attachments/assets/294d256a-aa01-48b3-8f57-ecc5f153ebb8" />
+
 
 ---
 
