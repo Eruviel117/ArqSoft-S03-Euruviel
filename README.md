@@ -71,3 +71,91 @@ CatalogoApp/
 |  Responsive | Adaptable a diferentes tamaños de pantalla |
 
 ---
+
+##  Tecnologías utilizadas
+
+| Tecnología | Versión | Uso |
+|---|---|---|
+| C# | 12 | Lenguaje principal |
+| ASP.NET Core MVC | .NET 9 | Framework web |
+| JSON | — | Persistencia de datos |
+| Git + GitHub | — | Control de versiones |
+
+
+---
+
+
+##  Persistencia de datos
+
+Los datos se almacenan en archivos **JSON** dentro de `Controllers/Data/`:
+
+| Archivo | Contenido |
+|---|---|
+| `items.json` | Catálogo de animes |
+| `usuarios.json` | Usuarios registrados |
+| `comentarios.json` | Comentarios por anime |
+
+---
+
+##  Capturas de pantalla
+
+###  Página de inicio
+> Hero con estadísticas y top 3 mejor calificados
+
+###  Catálogo
+> Cuadrícula de tarjetas con portadas, filtros y ordenamiento
+
+###  Vista de detalle
+> Información completa del anime con sección de comentarios
+
+###  Login y Registro
+> Formularios de autenticación con diseño anime
+
+---
+
+
+## Principios aplicados
+
+| Principio | Aplicación |
+|---|---|
+| **SRP** — Single Responsibility | Cada clase tiene una única responsabilidad (Service, Repository, Controller separados) |
+| **DIP** — Dependency Inversion | `IItemRepository` desacopla la infraestructura del dominio |
+| **OCP** — Open/Closed | Se pueden agregar nuevos repositorios (SQL, MongoDB) sin modificar la lógica de negocio |
+| **Inyección de dependencias** | Servicios registrados en `Program.cs` y resueltos automáticamente |
+| **Arquitectura en capas** | Separación clara entre Domain, Application, Infrastructure y Presentation |
+
+---
+
+##  Declaración de uso de Inteligencia Artificial
+
+| Campo | Detalle |
+|---|---|
+| **Nombre del estudiante** | Euruviel Marquez Martinez |
+| **IA utilizada** | Claude  |
+| **Fecha de uso** | 20/05/2026 |
+| **Propósito** | Corrección de errores|
+
+### Prompt utilizado:
+- *"Okey estoy haciendo un proyecto pero me marcan muchos errores, puedes ayudarme a solucionarlos"*
+
+### Respuesta en crudo (raw):
+
+Veo tu proyecto CatalogoApp en Visual Studio con 25 errores. Por la imagen puedo identificar los principales problemas:
+Errores visibles:
+
+CS0246 - ErrorViewModel no encontrado (falta using o referencia)
+CS1002 - Se esperaba ;
+CS1022 - Se esperaba definición de tipo o fin de archivo
+CS0103 - jsonPath no existe en el contexto actual
+CS1061 - Item no contiene definición para Estudio
+
+Para ayudarte mejor necesito ver el contenido de estos archivos:
+
+Program.cs - tiene la mayoría de errores (líneas 9, 13, 15)
+Agregar.cshtml - error en línea 17 con Estudio
+CatalogoController.cs - para entender el modelo
+items.json - para ver la estructura de datos
+
+¿Puedes pegarme el código de esos archivos? Especialmente Program.cs y Agregar.cshtml que parecen ser los más problemáticos. Puedes copiar y pegar el texto directamente aquí.
+
+---
