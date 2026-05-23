@@ -2,34 +2,221 @@
   {
     "Id": 1,
     "Titulo": "Attack on Titan",
-    "Genero": "Acción",
+    "Genero": "Acci\u00F3n",
     "Estudio": "Mappa",
-    "ImagenUrl": "https://cdn.myanimelist.net/images/anime/10/47347.jpg",
     "Ano": 2013,
     "Estado": "Terminado",
     "Calificacion": 10,
-    "Descripcion": "La humanidad vive encerrada en ciudades rodeadas de enormes murallas para protegerse de los Titanes."
+    "Descripcion": "La humanidad vive encerrada en ciudades rodeadas de enormes murallas para protegerse de los Titanes gigantes.",
+    "ImagenUrl": "https://cdn.myanimelist.net/images/anime/10/47347.jpg"
   },
   {
     "Id": 2,
     "Titulo": "Demon Slayer",
-    "Genero": "Acción",
+    "Genero": "Acci\u00F3n",
     "Estudio": "Ufotable",
-    "ImagenUrl": "https://cdn.myanimelist.net/images/anime/1286/99889.jpg",
     "Ano": 2019,
     "Estado": "Viendo",
     "Calificacion": 9,
-    "Descripcion": "Tanjiro busca la cura para su hermana convertida en demonio."
+    "Descripcion": "Tanjiro busca la cura para su hermana convertida en demonio mientras se convierte en cazador.",
+    "ImagenUrl": "https://cdn.myanimelist.net/images/anime/1286/99889.jpg"
   },
   {
     "Id": 3,
     "Titulo": "Fullmetal Alchemist Brotherhood",
     "Genero": "Aventura",
     "Estudio": "Bones",
-    "ImagenUrl": "https://cdn.myanimelist.net/images/anime/1223/96541.jpg",
     "Ano": 2009,
     "Estado": "Terminado",
     "Calificacion": 10,
-    "Descripcion": "Dos hermanos alquimistas buscan la piedra filosofal tras perder sus cuerpos."
+    "Descripcion": "Dos hermanos alquimistas buscan la piedra filosofal tras perder sus cuerpos en un ritual prohibido.",
+    "ImagenUrl": "https://cdn.myanimelist.net/images/anime/1223/96541.jpg"
+  },
+  {
+    "Id": 4,
+    "Titulo": "Death Note",
+    "Genero": "Suspenso",
+    "Estudio": "Madhouse",
+    "Ano": 2006,
+    "Estado": "Terminado",
+    "Calificacion": 9,
+    "Descripcion": "Un estudiante brillante encuentra un cuaderno que mata a cualquier persona cuyo nombre escriba en \u00E9l.",
+    "ImagenUrl": "https://cdn.myanimelist.net/images/anime/9/9453.jpg"
+  },
+  {
+    "Id": 6,
+    "Titulo": "One Punch Man",
+    "Genero": "Comedia",
+    "Estudio": "Madhouse",
+    "Ano": 2015,
+    "Estado": "Terminado",
+    "Calificacion": 9,
+    "Descripcion": "Saitama es un h\u00E9roe que puede derrotar a cualquier enemigo de un solo golpe, lo que le genera aburrimiento existencial.",
+    "ImagenUrl": "https://cdn.myanimelist.net/images/anime/12/76049.jpg"
+  },
+  {
+    "Id": 7,
+    "Titulo": "Naruto Shippuden",
+    "Genero": "Acci\u00F3n",
+    "Estudio": "Pierrot",
+    "Ano": 2007,
+    "Estado": "Terminado",
+    "Calificacion": 8,
+    "Descripcion": "Naruto contin\u00FAa su camino para convertirse en Hokage mientras enfrenta amenazas que ponen en riesgo el mundo ninja.",
+    "ImagenUrl": "https://cdn.myanimelist.net/images/anime/1565/111305.jpg"
+  },
+  {
+    "Id": 8,
+    "Titulo": "Steins;Gate",
+    "Genero": "Ciencia Ficci\u00F3n",
+    "Estudio": "White Fox",
+    "Ano": 2011,
+    "Estado": "Terminado",
+    "Calificacion": 10,
+    "Descripcion": "Un cient\u00EDfico descubre accidentalmente c\u00F3mo enviar mensajes al pasado, desencadenando consecuencias devastadoras.",
+    "ImagenUrl": "https://cdn.myanimelist.net/images/anime/5/73199.jpg"
+  },
+  {
+    "Id": 9,
+    "Titulo": "Violet Evergarden",
+    "Genero": "Drama",
+    "Estudio": "Kyoto Animation",
+    "Ano": 2018,
+    "Estado": "Terminado",
+    "Calificacion": 9,
+    "Descripcion": "Una ex soldado aprende a escribir cartas para otros mientras busca comprender el significado del amor.",
+    "ImagenUrl": "https://cdn.myanimelist.net/images/anime/1795/95088.jpg"
+  },
+  {
+    "Id": 10,
+    "Titulo": "My Hero Academia",
+    "Genero": "Acci\u00F3n",
+    "Estudio": "Bones",
+    "Ano": 2016,
+    "Estado": "Viendo",
+    "Calificacion": 8,
+    "Descripcion": "En un mundo donde casi todos tienen superpoderes, un chico sin poderes sue\u00F1a con ser el mayor h\u00E9roe.",
+    "ImagenUrl": "https://cdn.myanimelist.net/images/anime/10/78745.jpg"
+  },
+  {
+    "Id": 11,
+    "Titulo": "Spy x Family",
+    "Genero": "Comedia",
+    "Estudio": "Wit Studio",
+    "Ano": 2022,
+    "Estado": "Viendo",
+    "Calificacion": 9,
+    "Descripcion": "Un esp\u00EDa, una asesina y una ni\u00F1a tel\u00E9pata forman una familia falsa sin saber los secretos de los dem\u00E1s.",
+    "ImagenUrl": "https://cdn.myanimelist.net/images/anime/1441/122795.jpg"
+  },
+  {
+    "Id": 12,
+    "Titulo": "Jujutsu Kaisen",
+    "Genero": "Acci\u00F3n",
+    "Estudio": "Mappa",
+    "Ano": 2020,
+    "Estado": "Viendo",
+    "Calificacion": 9,
+    "Descripcion": "Yuji Itadori se convierte en recipiente de un poderoso demonio y debe enfrentarse al mundo de los hechiceros.",
+    "ImagenUrl": "https://cdn.myanimelist.net/images/anime/1171/109222.jpg"
+  },
+  {
+    "Id": 13,
+    "Titulo": "Kaguya-sama: Love is War",
+    "Genero": "Comedia",
+    "Estudio": "A-1 Pictures",
+    "Ano": 2019,
+    "Estado": "Terminado",
+    "Calificacion": 9,
+    "Descripcion": "Dos genios del consejo estudiantil se niegan a confesarse el uno al otro, convirtiendo cada interacci\u00F3n en una batalla mental.",
+    "ImagenUrl": "https://cdn.myanimelist.net/images/anime/1295/106551.jpg"
+  },
+  {
+    "Id": 14,
+    "Titulo": "KonoSuba",
+    "Genero": "Comedia",
+    "Estudio": "Studio Deen",
+    "Ano": 2016,
+    "Estado": "Terminado",
+    "Calificacion": 9,
+    "Descripcion": "Un chico es transportado a un mundo de fantas\u00EDa con una diosa in\u00FAtil, una maga explosiva y una caballero masoquista.",
+    "ImagenUrl": "https://cdn.myanimelist.net/images/anime/8/77831.jpg"
+  },
+  {
+    "Id": 16,
+    "Titulo": "Nanatsu no Taizai",
+    "Genero": "Acci\u00F3n",
+    "Estudio": "A-1 Pictures",
+    "Ano": 2014,
+    "Estado": "Terminado",
+    "Calificacion": 10,
+    "Descripcion": "Una princesa busca a los Siete Pecados Capitales, legendarios caballeros, para salvar su reino de una conspiraci\u00F3n.",
+    "ImagenUrl": "https://cdn.myanimelist.net/images/anime/8/65409.jpg"
+  },
+  {
+    "Id": 17,
+    "Titulo": "Re:Zero",
+    "Genero": "Fantas\u00EDa",
+    "Estudio": "White Fox",
+    "Ano": 2016,
+    "Estado": "Viendo",
+    "Calificacion": 9,
+    "Descripcion": "Un joven es transportado a otro mundo con la \u00FAnica habilidad de regresar al pasado cada vez que muere.",
+    "ImagenUrl": "https://cdn.myanimelist.net/images/anime/1522/128039.jpg"
+  },
+  {
+    "Id": 18,
+    "Titulo": "Sword Art Online",
+    "Genero": "Acci\u00F3n",
+    "Estudio": "A-1 Pictures",
+    "Ano": 2012,
+    "Estado": "Terminado",
+    "Calificacion": 7,
+    "Descripcion": "Miles de jugadores quedan atrapados en un VRMMORPG donde morir en el juego significa morir en la realidad.",
+    "ImagenUrl": "https://cdn.myanimelist.net/images/anime/11/39717.jpg"
+  },
+  {
+    "Id": 19,
+    "Titulo": "Black Clover",
+    "Genero": "Acci\u00F3n",
+    "Estudio": "Pierrot",
+    "Ano": 2017,
+    "Estado": "Terminado",
+    "Calificacion": 8,
+    "Descripcion": "Asta, un chico sin magia, sue\u00F1a con convertirse en el Rey Mago del reino en un mundo donde la magia lo es todo.",
+    "ImagenUrl": "https://cdn.myanimelist.net/images/anime/2/88336.jpg"
+  },
+  {
+    "Id": 21,
+    "Titulo": "Overlord",
+    "Genero": "Fantas\u00EDa",
+    "Estudio": "Madhouse",
+    "Ano": 2015,
+    "Estado": "Viendo",
+    "Calificacion": 8,
+    "Descripcion": "Un jugador queda atrapado en su personaje de un videojuego como un poderoso mago esqueleto y decide conquistar el mundo.",
+    "ImagenUrl": "https://cdn.myanimelist.net/images/anime/7/88019.jpg"
+  },
+  {
+    "Id": 22,
+    "Titulo": "Chainsaw Man",
+    "Genero": "Acci\u00F3n",
+    "Estudio": "Mappa",
+    "Ano": 2022,
+    "Estado": "Terminado",
+    "Calificacion": 9,
+    "Descripcion": "Denji, un joven cazador de demonios, se fusiona con su perro demonio y se convierte en el legendario Chainsaw Man.",
+    "ImagenUrl": "https://cdn.myanimelist.net/images/anime/1806/126216.jpg"
+  },
+  {
+    "Id": 24,
+    "Titulo": "Cyberpunk Edgerunners",
+    "Genero": "Ciencia Ficci\u00F3n",
+    "Estudio": "Trigger",
+    "Ano": 2022,
+    "Estado": "Terminado",
+    "Calificacion": 10,
+    "Descripcion": "En Night City, un chico de la calle lucha por sobrevivir convirti\u00E9ndose en un mercenario cyberpunk.",
+    "ImagenUrl": "https://cdn.myanimelist.net/images/anime/1818/126435.jpg"
   }
 ]

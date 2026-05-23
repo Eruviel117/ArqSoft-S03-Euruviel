@@ -46,6 +46,23 @@ namespace CatalogoApp.Application.Services
             Guardar(usuarios);
             return true;
         }
+        public bool Registrar(string nombreUsuario, string email, string password)
+        {
+            var usuarios = Leer();
+            if (usuarios.Any(u => u.NombreUsuario == nombreUsuario || u.Email == email))
+                return false;
+
+            var nuevo = new Usuario
+            {
+                Id = usuarios.Count > 0 ? usuarios.Max(u => u.Id) + 1 : 1,
+                NombreUsuario = nombreUsuario,
+                Email = email,
+                Password = password
+            };
+            usuarios.Add(nuevo);
+            Guardar(usuarios);
+            return true;
+        }
 
         public Usuario? Login(string nombreUsuario, string password)
         {

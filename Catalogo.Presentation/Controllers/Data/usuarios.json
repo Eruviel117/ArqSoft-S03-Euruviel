@@ -2,11 +2,19 @@
   {
     "Id": 1,
     "NombreUsuario": "Tomioka giyu",
+    "Email": "",
     "Password": "cortana117"
   },
   {
     "Id": 2,
     "NombreUsuario": "Iguro",
+    "Email": "",
+    "Password": "Cortana117"
+  },
+  {
+    "Id": 3,
+    "NombreUsuario": "Tokito",
+    "Email": "eruvielmarquezmartinez@gmail.com",
     "Password": "Cortana117"
   }
 ]

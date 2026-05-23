@@ -30,17 +30,19 @@ namespace CatalogoApp.Presentation.Controllers
         public IActionResult Registro() => View();
 
         [HttpPost]
-        public IActionResult Registro(string nombreUsuario, string password)
+        public IActionResult Registro(string nombreUsuario, string email, string password)
         {
-            if (string.IsNullOrWhiteSpace(nombreUsuario) || string.IsNullOrWhiteSpace(password))
+            if (string.IsNullOrWhiteSpace(nombreUsuario) ||
+                string.IsNullOrWhiteSpace(email) ||
+                string.IsNullOrWhiteSpace(password))
             {
                 ViewBag.Error = "Todos los campos son obligatorios";
                 return View();
             }
-            var ok = _usuarioService.Registrar(nombreUsuario, password);
+            var ok = _usuarioService.Registrar(nombreUsuario, email, password);
             if (!ok)
             {
-                ViewBag.Error = "Ese nombre de usuario ya existe";
+                ViewBag.Error = "El usuario o email ya existe";
                 return View();
             }
             HttpContext.Session.SetString("Usuario", nombreUsuario);
